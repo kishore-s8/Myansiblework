@@ -1,0 +1,5 @@
+YAML or YML rules
+1.yaml or yml
+2.---(three hyphen)
+3.Key:Values
+4.#Space Notation
