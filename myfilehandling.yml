@@ -1,0 +1,38 @@
+--- 
+- hosts: 172.31.44.183
+  become: yes
+  tasks:
+  - include_tasks: myfile.yml
+  - name: install webserver
+    dnf:
+     name: httpd
+     state: present
+  
+  - name: start  webserver
+    service:
+     name: httpd
+     state: started
+
+  - name: copy test 
+    copy:
+     src: mytestfile 
+     dest: /home/kk/mytestfile
+
+  - name: download internet files
+    get_url:
+      url: https://adp-mirror-vm1-he-fi.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20-deployer.tar.gz
+      dest:  /home/kk/apache-tomcat-10.0.20-deployer.tar.gz
+      force_basic_auth: yes
+
+  - name: copy index file into node Iside 
+    template:
+     src: myindex.j2
+     dest: /var/www/html/index.html
+    notify: startwebserver
+
+  handlers: 
+  - name: startwebserver
+  service:
+    name: httpd
+    state: started 
+

@@ -1,0 +1,16 @@
+---
+- hosts: mywebserver
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: install webserver on RedHat nodes
+    dnf:
+     name: "{{mywebapackonredhat}}"
+     state: present
+    when: ansible_os_family=="RedHat"
+
+  - name : start webserver on RedHat nodes
+    service:
+     name: "{{mywebapackonredhat}}"
+     state: started
+    when: ansible_os_family=="RedHat"

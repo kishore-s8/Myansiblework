@@ -1,0 +1,7 @@
+--- 
+- hosts: 172.31.44.183
+  become: yes
+  tasks:
+  - name: execute
+    command: hostname -f
+    

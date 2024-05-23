@@ -1,0 +1,9 @@
+--- 
+- hosts: mywebserver
+  become: yes
+  tasks:
+  - name: install java on RedHat node
+    dnf:
+     name: "{{myjavapackonredhat}}"
+     state: present 
+    when: ansible_os_family=="RedHat"
