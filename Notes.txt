@@ -1,5 +1,5 @@
 YAML or YML rules
 1.yaml or yml
-2.---(three hyphen)
+2.---(three hyph)
 3.Key:Values
 4.#Space Notations
